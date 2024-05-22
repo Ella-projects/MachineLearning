@@ -12,7 +12,7 @@
      "traceback": [
       "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
       "\u001b[0;31mModuleNotFoundError\u001b[0m                       Traceback (most recent call last)",
-      "Cell \u001b[0;32mIn[1], line 1\u001b[0m\n\u001b[0;32m----> 1\u001b[0m \u001b[39mimport\u001b[39;00m \u001b[39mtorch\u001b[39;00m\n\u001b[1;32m      2\u001b[0m \u001b[39mimport\u001b[39;00m \u001b[39mpandas\u001b[39;00m \u001b[39mas\u001b[39;00m \u001b[39mpd\u001b[39;00m\n\u001b[1;32m      3\u001b[0m \u001b[39mimport\u001b[39;00m \u001b[39mnumpy\u001b[39;00m \u001b[39mas\u001b[39;00m \u001b[39mnp\u001b[39;00m\n",
+      "Cell \u001b[0;32mIn[1], line 1\u001b[0m\n\u001b[0;32m----> 1\u001b[0m \u001b[39mimport\u001b[39;00m \u001b[39mtorch\u001b[39;00m\n\u001b[1;32m      2\u001b[0m \u001b[39mimport\u001b[39;00m \u001b[39mtorch\u001b[39;00m\u001b[39m.\u001b[39;00m\u001b[39mnn\u001b[39;00m \u001b[39mas\u001b[39;00m \u001b[39mnn\u001b[39;00m\n\u001b[1;32m      3\u001b[0m \u001b[39mimport\u001b[39;00m \u001b[39mtorch\u001b[39;00m\u001b[39m.\u001b[39;00m\u001b[39moptim\u001b[39;00m \u001b[39mas\u001b[39;00m \u001b[39moptim\u001b[39;00m\n",
       "\u001b[0;31mModuleNotFoundError\u001b[0m: No module named 'torch'"
      ]
     }
@@ -28,7 +28,7 @@
     "from typing import Optional, Union, Callable\n",
     "\n",
     "# Constants\n",
-    "batch_size = 32\n",
+    "batch_size = 16\n",
     "num_classes = 102\n",
     "num_epochs = 100\n",
     "learning_rate = 0.001\n",
@@ -36,7 +36,7 @@
     "# Define data transformations\n",
     "data_transforms = {\n",
     "    'train': transforms.Compose([\n",
-    "        transforms.Resize((224, 224)),\n",
+    "        transforms.Resize((180, 180)),\n",
     "        transforms.RandomHorizontalFlip(),\n",
     "        transforms.ToTensor(),\n",
     "        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])\n",
@@ -107,26 +107,27 @@
     "        # Print loss for the epoch\n",
     "        print(f\"Epoch {epoch + 1}/{num_epochs}, Loss: {running_loss / len(train_loader)}\")\n",
     "\n",
-    "# Testing function\n",
-    "# def test_model(model, test_loader):\n",
-    "#     model.eval()\n",
-    "#     correct = 0\n",
-    "#     total = 0\n",
-    "    \n",
-    "#     with torch.no_grad():\n",
-    "#         for inputs, labels in test_loader:\n",
-    "#             inputs, labels = inputs.to(device), labels.to(device)\n",
-    "#             outputs = model(inputs)\n",
-    "#             _, predicted = torch.max(outputs.data, 1)\n",
-    "#             total += labels.size(0)\n",
-    "#             correct += (predicted == labels).sum().item()\n",
-    "    \n",
-    "#     accuracy = correct / total\n",
-    "#     print(f\"Test Accuracy: {accuracy * 100:.2f}%\")\n",
+    "#Testing function\n",
     "\n",
-    "# Train and evaluate the model\n",
-    "# train_model(model, train_loader, criterion, optimizer, num_epochs)\n",
-    "# test_model(model, test_loader)"
+    "def test_model(model, test_loader):\n",
+    "    model.eval()\n",
+    "    correct = 0\n",
+    "    total = 0\n",
+    "    \n",
+    "    with torch.no_grad():\n",
+    "        for inputs, labels in test_loader:\n",
+    "            inputs, labels = inputs.to(device), labels.to(device)\n",
+    "            outputs = model(inputs)\n",
+    "            _, predicted = torch.max(outputs.data, 1)\n",
+    "            total += labels.size(0)\n",
+    "            correct += (predicted == labels).sum().item()\n",
+    "    \n",
+    "    accuracy = correct / total\n",
+    "    print(f\"Test Accuracy: {accuracy * 100:.2f}%\")\n",
+    "\n",
+    "#Train and evaluate the model\n",
+    "train_model(model, train_loader, criterion, optimizer, num_epochs)\n",
+    "test_model(model, test_loader)"
    ]
   }
  ],
@@ -146,7 +147,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.11.1 (v3.11.1:a7a450f84a, Dec  6 2022, 15:24:06) [Clang 13.0.0 (clang-1300.0.29.30)]"
+   "version": "3.11.1"
   },
   "orig_nbformat": 4,
   "vscode": {
