@@ -1,0 +1,21 @@
+
+### Hardware Requirements
+- **GPU Support**: The experiments have been optimized for high-performance computing environments using Google Colab's L4 and A100 GPUs. These GPUs significantly reduce computation times and are recommended for training and testing the model efficiently.
+
+### Software Requirements
+- **Python Version**: Python 3.7 or higher
+- **Operating System**: Platform independent, but designed for use on Google Colab
+
+### Python Packages
+The following Python packages are required to execute the model scripts. These can be installed via pip or conda, and are also available by default in the Google Colab environment:
+
+- `torch>=1.7.0`: For creating and training the neural network models.
+- `torchvision>=0.8.0`: For data transformation and loading pretrained models relevant to computer vision tasks.
+- `numpy>=1.19.2`: For numerical operations.
+- `matplotlib>=3.3.2`: For plotting and visualizing data (optional, for analysis and inspection of results).
+
+### Installation Commands
+To install the required packages, run the following command:
+
+```bash
+pip install torch torchvision numpy matplotlib
